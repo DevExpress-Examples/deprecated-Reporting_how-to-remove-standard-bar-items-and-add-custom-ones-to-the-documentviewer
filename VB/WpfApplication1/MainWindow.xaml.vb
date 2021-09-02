@@ -1,5 +1,4 @@
-﻿Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Globalization
@@ -13,6 +12,7 @@ Namespace WpfApplication1
 	''' </summary>
 	Partial Public Class MainWindow
 		Inherits Window
+
 		Private ReadOnly Property ViewModel() As MainWindowViewModel
 			Get
 				Return TryCast(DataContext, MainWindowViewModel)
@@ -24,8 +24,11 @@ Namespace WpfApplication1
 			' Create a document to display.
 			Dim data() As String = CultureInfo.CurrentCulture.DateTimeFormat.DayNames
 
-			Dim link As SimpleLink = New SimpleLink With {.DetailTemplate = CType(Resources("dayNameTemplate"), DataTemplate), .DetailCount = data.Length}
-			AddHandler link.CreateDetail, Function(s, e) e.Data = data(e.DetailIndex)
+			Dim link As New SimpleLink With {
+				.DetailTemplate = DirectCast(Resources("dayNameTemplate"), DataTemplate),
+				.DetailCount = data.Length
+			}
+			AddHandler link.CreateDetail, Sub(s, e) e.Data = data(e.DetailIndex)
 
 			ViewModel.PreviewModel.Link = link
 			documentViewer1.Model = ViewModel.PreviewModel

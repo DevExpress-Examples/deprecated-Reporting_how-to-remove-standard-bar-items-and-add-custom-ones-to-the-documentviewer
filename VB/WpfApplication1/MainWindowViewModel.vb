@@ -1,5 +1,4 @@
-﻿Imports Microsoft.VisualBasic
-Imports System.ComponentModel
+﻿Imports System.ComponentModel
 Imports DevExpress.Mvvm
 Imports DevExpress.Xpf.Printing
 ' ...
