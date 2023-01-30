@@ -1,66 +1,70 @@
-﻿Imports System.ComponentModel
+Imports System.ComponentModel
 Imports DevExpress.Mvvm
 Imports DevExpress.Xpf.Printing
+
 ' ...
-
 Namespace WpfApplication1
-	Friend Class MainWindowViewModel
-		Private privatePreviewModel As LinkPreviewModel
-		Public Property PreviewModel() As LinkPreviewModel
-			Get
-				Return privatePreviewModel
-			End Get
-			Private Set(ByVal value As LinkPreviewModel)
-				privatePreviewModel = value
-			End Set
-		End Property
-		Private privateCreateDocumentCommand As DelegateCommand
-		Public Property CreateDocumentCommand() As DelegateCommand
-			Get
-				Return privateCreateDocumentCommand
-			End Get
-			Private Set(ByVal value As DelegateCommand)
-				privateCreateDocumentCommand = value
-			End Set
-		End Property
-		Private privateClearDocumentCommand As DelegateCommand
-		Public Property ClearDocumentCommand() As DelegateCommand
-			Get
-				Return privateClearDocumentCommand
-			End Get
-			Private Set(ByVal value As DelegateCommand)
-				privateClearDocumentCommand = value
-			End Set
-		End Property
 
-		Public Sub New()
-			CreateDocumentCommand = New DelegateCommand(AddressOf ExecuteCreateDocumentCommand)
-			ClearDocumentCommand = New DelegateCommand(AddressOf ExecuteClearDocumentCommand, AddressOf CanExecuteClearDocumentCommand)
-			PreviewModel = New LinkPreviewModel()
-		End Sub
+    Friend Class MainWindowViewModel
 
-		Private Sub ExecuteCreateDocumentCommand()
-			PreviewModel.Link.CreateDocument(True)
-			ClearDocumentCommand.RaiseCanExecuteChanged()
-		End Sub
+        Private _PreviewModel As LinkPreviewModel, _CreateDocumentCommand As DelegateCommand, _ClearDocumentCommand As DelegateCommand
 
-		Private Function CanExecuteClearDocumentCommand() As Boolean
-			Return Not PreviewModel.IsEmptyDocument
-		End Function
+        Public Property PreviewModel As LinkPreviewModel
+            Get
+                Return _PreviewModel
+            End Get
 
-		Private Sub ExecuteClearDocumentCommand()
-			PreviewModel.Link.PrintingSystem.ClearContent()
-			ClearDocumentCommand.RaiseCanExecuteChanged()
-		End Sub
+            Private Set(ByVal value As LinkPreviewModel)
+                _PreviewModel = value
+            End Set
+        End Property
 
-		#Region "INotifyPropertyChanged"
+        Public Property CreateDocumentCommand As DelegateCommand
+            Get
+                Return _CreateDocumentCommand
+            End Get
 
-		Public Event PropertyChanged As PropertyChangedEventHandler
+            Private Set(ByVal value As DelegateCommand)
+                _CreateDocumentCommand = value
+            End Set
+        End Property
 
-		Private Sub RaisePropertyChanged(ByVal propertyName As String)
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End Sub
-		#End Region
+        Public Property ClearDocumentCommand As DelegateCommand
+            Get
+                Return _ClearDocumentCommand
+            End Get
 
-	End Class
+            Private Set(ByVal value As DelegateCommand)
+                _ClearDocumentCommand = value
+            End Set
+        End Property
+
+        Public Sub New()
+            CreateDocumentCommand = New DelegateCommand(AddressOf ExecuteCreateDocumentCommand)
+            ClearDocumentCommand = New DelegateCommand(AddressOf ExecuteClearDocumentCommand, AddressOf CanExecuteClearDocumentCommand)
+            PreviewModel = New LinkPreviewModel()
+        End Sub
+
+        Private Sub ExecuteCreateDocumentCommand()
+            PreviewModel.Link.CreateDocument(True)
+            ClearDocumentCommand.RaiseCanExecuteChanged()
+        End Sub
+
+        Private Function CanExecuteClearDocumentCommand() As Boolean
+            Return Not PreviewModel.IsEmptyDocument
+        End Function
+
+        Private Sub ExecuteClearDocumentCommand()
+            PreviewModel.Link.PrintingSystem.ClearContent()
+            ClearDocumentCommand.RaiseCanExecuteChanged()
+        End Sub
+
+'#Region "INotifyPropertyChanged"
+        Public Event PropertyChanged As PropertyChangedEventHandler
+
+        Private Sub RaisePropertyChanged(ByVal propertyName As String)
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+'#End Region
+    End Class
 End Namespace
