@@ -6,9 +6,9 @@
 <!-- default file list -->
 *Files to look at*:
 
-* [MainWindow.xaml](./CS/WpfApplication1/MainWindow.xaml) (VB: [MainWindow.xaml.vb](./VB/WpfApplication1/MainWindow.xaml.vb))
-* **[MainWindow.xaml.cs](./CS/WpfApplication1/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/WpfApplication1/MainWindow.xaml.vb))**
-* [MainWindowViewModel.cs](./CS/WpfApplication1/MainWindowViewModel.cs) (VB: [MainWindowViewModel.vb](./VB/WpfApplication1/MainWindowViewModel.vb))
+* [MainWindow.xaml](./CS/MainWindow.xaml) (VB: [MainWindow.xaml.vb](./VB/MainWindow.xaml.vb))
+* **[MainWindow.xaml.cs](./CS/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/MainWindow.xaml.vb))**
+* [MainWindowViewModel.cs](./CS/MainWindowViewModel.cs) (VB: [MainWindowViewModel.vb](./VB/MainWindowViewModel.vb))
 <!-- default file list end -->
 # How to remove standard bar items and add custom ones to the DocumentViewer toolbar
 
